@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>Add Book</h1>
+    <hr>
+    <div class="row my-3">
+        <div class="col">
+            <label for="title" class="form-label">Book Title</label>
+            <input [(ngModel)]="newBookTitle" type="email" class="form-control" id="title">
+        </div>
+        <div class="col">
+            <label for="author" class="form-label">Author Name</label>
+            <input [(ngModel)]="newBookAuthor" class="form-control" id="author">
+        </div>
+    </div>
+    <div class="mb-3">
+        <button (click)="addBook()" class="btn btn-success w-100">Add Book</button>
+    </div>
+</div>
+
+@if (bookArray) {
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">Author Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (book of bookArray; track $index) {
+        <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td><button (click)="deleteBook(book.id)" class="btn btn-outline-danger">Delete Entry</button></td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
